@@ -155,6 +155,7 @@ tx_heatwave_outage_events_2014_2021.xlsx
 tx_heatwave_outage_county_summary_2014_2021.csv — County-level aggregated metrics
 tx_heatwave_outage_county_summary_2014_2021.xlsx
 tx_major_outage_logit_threshold_summary.csv — Logistic regression threshold comparison
+
 📈 Figures
 Distribution Plots
 tx_heatwave_outage_event_distributions.jpg — 3-panel histogram of event characteristics
@@ -171,10 +172,6 @@ tx_major_outage_logit_Fixed_500_customers.png — Model using fixed outage thres
 
 Logistic Regression:
 logit(P(major outage)) = β₀ + β₁ × Mean Heat Index
-
-Key Findings:
-- +1°F increase → ~43–52% higher odds of major outage
-- Heat significantly increases outage risk
 
 ---
 
