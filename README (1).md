@@ -90,49 +90,7 @@ The workflow identifies **heatwave events**, links them to **power outages**, an
 | Daily records (all months, all counties) | 742,188 |
 | Unique Texas counties in dataset | 254 |
 
----
 
-🏗️ Pipeline Architecture
-
-
-tx-heatwave-outage-analysis/
-├── README.md
-├── tx_heatwave_outage_analysis.py
-├── LICENSE
-│
-├── eaglei_outages/                  # Input data (not tracked in git)
-│   ├── eaglei_outages_2014.csv
-│   ├── eaglei_outages_2015.csv
-│   ├── eaglei_outages_2016.csv
-│   ├── eaglei_outages_2017.csv
-│   ├── eaglei_outages_2018.csv
-│   ├── eaglei_outages_2019.csv
-│   ├── eaglei_outages_2020.csv
-│   └── eaglei_outages_2021.csv
-│
-├── data/
-│   └── cb_2018_us_county_500k.zip   # Auto-downloaded shapefile
-│
-├── outputs/
-│   ├── tables/
-│   │   ├── tx_heatwave_events_2014_2021.csv
-│   │   ├── tx_heatwave_events_2014_2021.xlsx
-│   │   ├── tx_heatwave_outage_events_2014_2021.csv
-│   │   ├── tx_heatwave_outage_events_2014_2021.xlsx
-│   │   ├── tx_heatwave_outage_county_summary_2014_2021.csv
-│   │   ├── tx_heatwave_outage_county_summary_2014_2021.xlsx
-│   │   └── tx_major_outage_logit_threshold_summary.csv
-│   │
-│   └── figures/
-│       ├── tx_heatwave_outage_event_distributions.jpg
-│       ├── tx_heatwave_outage_map_n_events.png
-│       ├── tx_heatwave_outage_map_customers.png
-│       ├── tx_heatwave_outage_map_duration.png
-│       ├── tx_major_outage_logit_P90_severity.png
-│       ├── tx_major_outage_logit_P95_severity.png
-│       └── tx_major_outage_logit_Fixed_500_customers.png
-
----
 
 ## Requirements
 
