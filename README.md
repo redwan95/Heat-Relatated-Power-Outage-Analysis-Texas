@@ -1,3 +1,184 @@
+# Texas Heatwave – Power Outage Relationship Analysis (2014–2021)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+---
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Research Question](#research-question)
+- [Data Sources](#data-sources)
+- [Methodology](#methodology)
+  - [Pipeline Architecture](#pipeline-architecture)
+  - [Heat Index Computation](#heat-index-computation)
+  - [Adaptive Heatwave Threshold Selection](#adaptive-heatwave-threshold-selection)
+  - [Heatwave Event Construction](#heatwave-event-construction)
+  - [Logistic Regression Robustness Checks](#logistic-regression-robustness-checks)
+- [Outputs](#outputs)
+  - [Tabular Outputs](#tabular-outputs)
+  - [Visualizations](#visualizations)
+- [Key Results](#key-results)
+  - [Heatwave–Outage Event Statistics](#heatwaveoutage-event-statistics)
+  - [Logistic Regression Summary](#logistic-regression-summary)
+- [Installation and Usage](#installation-and-usage)
+  - [Prerequisites](#prerequisites)
+  - [Install Dependencies](#install-dependencies)
+  - [Data Preparation](#data-preparation)
+  - [Run the Analysis](#run-the-analysis)
+- [Configuration Parameters](#configuration-parameters)
+- [File Structure](#file-structure)
+- [Limitations and Caveats](#limitations-and-caveats)
+- [Technical Details](#technical-details)
+  - [Software Versions Tested](#software-versions-tested)
+  - [API Rate Limits](#api-rate-limits)
+  - [Computational Performance](#computational-performance)
+- [Citation](#citation)
+- [License](#license)
+
+---
+
+## Project Overview
+
+This project quantifies the statistical relationship between **extreme heat events
+(heatwaves)** and **electric power outages** across all **254 Texas counties** from
+**2014 through 2021**. The analysis pipeline ingests county-level power outage
+records from the U.S. Department of Energy's **EAGLE-I** system and hourly
+meteorological observations from the **Open-Meteo Archive API**, constructs
+heatwave events using an adaptive percentile-based threshold, and evaluates the
+heat–outage link through event-level metrics, choropleth mapping, and logistic
+regression modeling.
+
+The entire workflow runs in a **single Python script** (or Colab notebook) and
+produces publication-ready tables, maps, distribution plots, and statistical
+summaries.
+
+---
+
+## Research Question
+
+> **Does increasing heat intensity (measured by heat index) during heatwave events
+> significantly elevate the probability and severity of power outages across Texas
+> counties?**
+
+---
+
+## Data Sources
+
+| Dataset | Provider | Temporal Coverage | Spatial Resolution | Variables Used |
+|---------|----------|-------------------|--------------------|----------------|
+| **EAGLE-I Outages** | U.S. DOE Environment for Analysis of Geo-Located Energy Information | 2014–2021 | County (FIPS) | `fips_code`, `county`, `state`, `sum` (customers without power), `run_start_time` |
+| **Open-Meteo Archive** | Open-Meteo Historical Weather API | 2014-01-01 to 2021-12-31 | Single point (31.0°N, 99.0°W — central Texas), replicated to all counties | `temperature_2m` (°C), `relativehumidity_2m` (%) |
+| **TIGER/Line Shapefiles** | U.S. Census Bureau (2018 vintage) | Static | County polygons (500k generalized) | Geometry, `STATEFP`, `COUNTYFP` |
+
+### Data Volume Summary
+
+| Metric | Value |
+|--------|-------|
+| Raw EAGLE-I records (Texas) | 6,726,628 |
+| Hourly outage records (after aggregation) | 2,043,277 |
+| Open-Meteo hourly weather observations | 70,128 (single site) |
+| Weather records (replicated × 254 counties) | 17,812,512 |
+| Daily records (all months, all counties) | 742,188 |
+| Unique Texas counties in dataset | 254 |
+
+---
+
+### Pipeline Architecture
+
+# Texas Heatwave – Power Outage Relationship Analysis (2014–2021)
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+---
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Research Question](#research-question)
+- [Data Sources](#data-sources)
+- [Methodology](#methodology)
+  - [Pipeline Architecture](#pipeline-architecture)
+  - [Heat Index Computation](#heat-index-computation)
+  - [Adaptive Heatwave Threshold Selection](#adaptive-heatwave-threshold-selection)
+  - [Heatwave Event Construction](#heatwave-event-construction)
+  - [Logistic Regression Robustness Checks](#logistic-regression-robustness-checks)
+- [Outputs](#outputs)
+  - [Tabular Outputs](#tabular-outputs)
+  - [Visualizations](#visualizations)
+- [Key Results](#key-results)
+  - [Heatwave–Outage Event Statistics](#heatwaveoutage-event-statistics)
+  - [Logistic Regression Summary](#logistic-regression-summary)
+- [Installation and Usage](#installation-and-usage)
+  - [Prerequisites](#prerequisites)
+  - [Install Dependencies](#install-dependencies)
+  - [Data Preparation](#data-preparation)
+  - [Run the Analysis](#run-the-analysis)
+- [Configuration Parameters](#configuration-parameters)
+- [File Structure](#file-structure)
+- [Limitations and Caveats](#limitations-and-caveats)
+- [Technical Details](#technical-details)
+  - [Software Versions Tested](#software-versions-tested)
+  - [API Rate Limits](#api-rate-limits)
+  - [Computational Performance](#computational-performance)
+- [Citation](#citation)
+- [License](#license)
+
+---
+
+## Project Overview
+
+This project quantifies the statistical relationship between **extreme heat events
+(heatwaves)** and **electric power outages** across all **254 Texas counties** from
+**2014 through 2021**. The analysis pipeline ingests county-level power outage
+records from the U.S. Department of Energy's **EAGLE-I** system and hourly
+meteorological observations from the **Open-Meteo Archive API**, constructs
+heatwave events using an adaptive percentile-based threshold, and evaluates the
+heat–outage link through event-level metrics, choropleth mapping, and logistic
+regression modeling.
+
+The entire workflow runs in a **single Python script** (or Colab notebook) and
+produces publication-ready tables, maps, distribution plots, and statistical
+summaries.
+
+---
+
+## Research Question
+
+> **Does increasing heat intensity (measured by heat index) during heatwave events
+> significantly elevate the probability and severity of power outages across Texas
+> counties?**
+
+---
+
+## Data Sources
+
+| Dataset | Provider | Temporal Coverage | Spatial Resolution | Variables Used |
+|---------|----------|-------------------|--------------------|----------------|
+| **EAGLE-I Outages** | U.S. DOE Environment for Analysis of Geo-Located Energy Information | 2014–2021 | County (FIPS) | `fips_code`, `county`, `state`, `sum` (customers without power), `run_start_time` |
+| **Open-Meteo Archive** | Open-Meteo Historical Weather API | 2014-01-01 to 2021-12-31 | Single point (31.0°N, 99.0°W — central Texas), replicated to all counties | `temperature_2m` (°C), `relativehumidity_2m` (%) |
+| **TIGER/Line Shapefiles** | U.S. Census Bureau (2018 vintage) | Static | County polygons (500k generalized) | Geometry, `STATEFP`, `COUNTYFP` |
+
+### Data Volume Summary
+
+| Metric | Value |
+|--------|-------|
+| Raw EAGLE-I records (Texas) | 6,726,628 |
+| Hourly outage records (after aggregation) | 2,043,277 |
+| Open-Meteo hourly weather observations | 70,128 (single site) |
+| Weather records (replicated × 254 counties) | 17,812,512 |
+| Daily records (all months, all counties) | 742,188 |
+| Unique Texas counties in dataset | 254 |
+
+---
+
+
+### Pipeline Architecture
+
 # Final Analysis Report  
 ## Heat Intensity and Power Outage Relationship in Texas (2014–2021)
 
