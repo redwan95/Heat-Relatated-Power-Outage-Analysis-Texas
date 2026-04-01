@@ -91,15 +91,16 @@ The workflow identifies **heatwave events**, links them to **power outages**, an
 | Unique Texas counties in dataset | 254 |
 
 ---
+
 🏗️ Pipeline Architecture
 
+
 tx-heatwave-outage-analysis/
+├── README.md
+├── tx_heatwave_outage_analysis.py
+├── LICENSE
 │
-├── README.md                                          # Project documentation
-├── tx_heatwave_outage_analysis.py                     # Main analysis script
-├── LICENSE                                            # MIT License
-│
-├── eaglei_outages/                                    # Input data (not tracked in git)
+├── eaglei_outages/                  # Input data (not tracked in git)
 │   ├── eaglei_outages_2014.csv
 │   ├── eaglei_outages_2015.csv
 │   ├── eaglei_outages_2016.csv
@@ -109,12 +110,11 @@ tx-heatwave-outage-analysis/
 │   ├── eaglei_outages_2020.csv
 │   └── eaglei_outages_2021.csv
 │
-├── data/                                              # Supporting datasets
-│   └── cb_2018_us_county_500k.zip                     # Auto-downloaded shapefile
+├── data/
+│   └── cb_2018_us_county_500k.zip   # Auto-downloaded shapefile
 │
-├── outputs/                                           # All generated outputs
-│
-│   ├── tables/                                        # Output tables
+├── outputs/
+│   ├── tables/
 │   │   ├── tx_heatwave_events_2014_2021.csv
 │   │   ├── tx_heatwave_events_2014_2021.xlsx
 │   │   ├── tx_heatwave_outage_events_2014_2021.csv
@@ -122,8 +122,8 @@ tx-heatwave-outage-analysis/
 │   │   ├── tx_heatwave_outage_county_summary_2014_2021.csv
 │   │   ├── tx_heatwave_outage_county_summary_2014_2021.xlsx
 │   │   └── tx_major_outage_logit_threshold_summary.csv
-│
-│   └── figures/                                       # Output visualizations
+│   │
+│   └── figures/
 │       ├── tx_heatwave_outage_event_distributions.jpg
 │       ├── tx_heatwave_outage_map_n_events.png
 │       ├── tx_heatwave_outage_map_customers.png
@@ -131,6 +131,7 @@ tx-heatwave-outage-analysis/
 │       ├── tx_major_outage_logit_P90_severity.png
 │       ├── tx_major_outage_logit_P95_severity.png
 │       └── tx_major_outage_logit_Fixed_500_customers.png
+
 
 ## Requirements
 
@@ -148,25 +149,27 @@ tx-heatwave-outage-analysis/
 All outputs are saved under the outputs/ directory and organized as follows:
 
 📊 Tables
-tx_heatwave_events_2014_2021.csv — All detected heatwave events
-tx_heatwave_events_2014_2021.xlsx
-tx_heatwave_outage_events_2014_2021.csv — Heatwave events with associated outages
-tx_heatwave_outage_events_2014_2021.xlsx
-tx_heatwave_outage_county_summary_2014_2021.csv — County-level aggregated metrics
-tx_heatwave_outage_county_summary_2014_2021.xlsx
-tx_major_outage_logit_threshold_summary.csv — Logistic regression threshold comparison
+- tx_heatwave_events_2014_2021.csv — All detected heatwave events
+- tx_heatwave_events_2014_2021.xlsx
+- tx_heatwave_outage_events_2014_2021.csv — Heatwave events with associated outages
+- tx_heatwave_outage_events_2014_2021.xlsx
+- tx_heatwave_outage_county_summary_2014_2021.csv — County-level aggregated metrics
+- tx_heatwave_outage_county_summary_2014_2021.xlsx
+- tx_major_outage_logit_threshold_summary.csv — Logistic regression threshold comparison
 
 📈 Figures
 Distribution Plots
-tx_heatwave_outage_event_distributions.jpg — 3-panel histogram of event characteristics
+- tx_heatwave_outage_event_distributions.jpg — 3-panel histogram of event characteristics
+
 Spatial Maps
-tx_heatwave_outage_map_n_events.png — Heatwave event frequency by county
-tx_heatwave_outage_map_customers.png — Total customers affected
-tx_heatwave_outage_map_duration.png — Mean outage duration
+- tx_heatwave_outage_map_n_events.png — Heatwave event frequency by county
+- tx_heatwave_outage_map_customers.png — Total customers affected
+- tx_heatwave_outage_map_duration.png — Mean outage duration
+
 Statistical Modeling (Logistic Regression)
-tx_major_outage_logit_P90_severity.png — Model using 90th percentile threshold
-tx_major_outage_logit_P95_severity.png — Model using 95th percentile threshold
-tx_major_outage_logit_Fixed_500_customers.png — Model using fixed outage threshold
+- tx_major_outage_logit_P90_severity.png — Model using 90th percentile threshold
+- tx_major_outage_logit_P95_severity.png — Model using 95th percentile threshold
+- tx_major_outage_logit_Fixed_500_customers.png — Model using fixed outage threshold
 
 ## 📉 Statistical Modeling
 
