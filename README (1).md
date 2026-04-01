@@ -91,19 +91,16 @@ The workflow identifies **heatwave events**, links them to **power outages**, an
 | Unique Texas counties in dataset | 254 |
 
 ---
-
-
-### Pipeline Architecture
-
+🏗️ Pipeline Architecture
 
 tx-heatwave-outage-analysis/
 │
-├── README.md                                            # This documentation
-├── tx_heatwave_outage_analysis.py                       # Main analysis script
-├── LICENSE                                              # MIT License
+├── README.md                                          # Project documentation
+├── tx_heatwave_outage_analysis.py                     # Main analysis script
+├── LICENSE                                            # MIT License
 │
-├── eaglei_outages/                                      # Input data directory
-│   ├── eaglei_outages_2014.csv                          #   (not tracked in git)
+├── eaglei_outages/                                    # Input data (not tracked in git)
+│   ├── eaglei_outages_2014.csv
 │   ├── eaglei_outages_2015.csv
 │   ├── eaglei_outages_2016.csv
 │   ├── eaglei_outages_2017.csv
@@ -112,25 +109,28 @@ tx-heatwave-outage-analysis/
 │   ├── eaglei_outages_2020.csv
 │   └── eaglei_outages_2021.csv
 │
-├── cb_2018_us_county_500k.zip                           # Auto-downloaded shapefile
+├── data/                                              # Supporting datasets
+│   └── cb_2018_us_county_500k.zip                     # Auto-downloaded shapefile
 │
-│── ── Output Tables ──
-├── tx_heatwave_events_2014_2021.csv                     # All heatwave events
-├── tx_heatwave_events_2014_2021.xlsx
-├── tx_heatwave_outage_events_2014_2021.csv              # Heatwave events with outages
-├── tx_heatwave_outage_events_2014_2021.xlsx
-├── tx_heatwave_outage_county_summary_2014_2021.csv      # County-level summary
-├── tx_heatwave_outage_county_summary_2014_2021.xlsx
-├── tx_major_outage_logit_threshold_summary.csv          # Logit comparison table
+├── outputs/                                           # All generated outputs
 │
-│── ── Output Figures ──
-├── tx_heatwave_outage_event_distributions.jpg           # 3-panel histograms
-├── tx_heatwave_outage_map_n_events.png                  # Map: event frequency
-├── tx_heatwave_outage_map_customers.png                 # Map: customers affected
-├── tx_heatwave_outage_map_duration.png                  # Map: mean duration
-├── tx_major_outage_logit_P90_severity.png               # Logit plot: P90 threshold
-├── tx_major_outage_logit_P95_severity.png               # Logit plot: P95 threshold
-└── tx_major_outage_logit_Fixed_500_customers.png        # Logit plot: fixed 500
+│   ├── tables/                                        # Output tables
+│   │   ├── tx_heatwave_events_2014_2021.csv
+│   │   ├── tx_heatwave_events_2014_2021.xlsx
+│   │   ├── tx_heatwave_outage_events_2014_2021.csv
+│   │   ├── tx_heatwave_outage_events_2014_2021.xlsx
+│   │   ├── tx_heatwave_outage_county_summary_2014_2021.csv
+│   │   ├── tx_heatwave_outage_county_summary_2014_2021.xlsx
+│   │   └── tx_major_outage_logit_threshold_summary.csv
+│
+│   └── figures/                                       # Output visualizations
+│       ├── tx_heatwave_outage_event_distributions.jpg
+│       ├── tx_heatwave_outage_map_n_events.png
+│       ├── tx_heatwave_outage_map_customers.png
+│       ├── tx_heatwave_outage_map_duration.png
+│       ├── tx_major_outage_logit_P90_severity.png
+│       ├── tx_major_outage_logit_P95_severity.png
+│       └── tx_major_outage_logit_Fixed_500_customers.png
 
 ## Requirements
 
@@ -143,52 +143,29 @@ tx-heatwave-outage-analysis/
 - openpyxl
 - statsmodels
 
-## Files Generated
+📂 Files Generated
 
-- `txheatwaveevents20142021.csv`
-- `txheatwaveevents20142021.xlsx`
-- `txheatwaveoutageevents20142021.csv`
-- `txheatwaveoutageevents20142021.xlsx`
-- `txheatwaveoutagecountysummary20142021.csv`
-- `txheatwaveoutagecountysummary20142021.xlsx`
-- Plot figures
-- County map figures
-- Logistic regression figures
-tx-heatwave-outage-analysis/
-│
-├── README.md                                            # This documentation
-├── tx_heatwave_outage_analysis.py                       # Main analysis script
-├── LICENSE                                              # MIT License
-│
-├── eaglei_outages/                                      # Input data directory
-│   ├── eaglei_outages_2014.csv                          #   (not tracked in git)
-│   ├── eaglei_outages_2015.csv
-│   ├── eaglei_outages_2016.csv
-│   ├── eaglei_outages_2017.csv
-│   ├── eaglei_outages_2018.csv
-│   ├── eaglei_outages_2019.csv
-│   ├── eaglei_outages_2020.csv
-│   └── eaglei_outages_2021.csv
-│
-├── cb_2018_us_county_500k.zip                           # Auto-downloaded shapefile
-│
-│── ── Output Tables ──
-├── tx_heatwave_events_2014_2021.csv                     # All heatwave events
-├── tx_heatwave_events_2014_2021.xlsx
-├── tx_heatwave_outage_events_2014_2021.csv              # Heatwave events with outages
-├── tx_heatwave_outage_events_2014_2021.xlsx
-├── tx_heatwave_outage_county_summary_2014_2021.csv      # County-level summary
-├── tx_heatwave_outage_county_summary_2014_2021.xlsx
-├── tx_major_outage_logit_threshold_summary.csv          # Logit comparison table
-│
-│── ── Output Figures ──
-├── tx_heatwave_outage_event_distributions.jpg           # 3-panel histograms
-├── tx_heatwave_outage_map_n_events.png                  # Map: event frequency
-├── tx_heatwave_outage_map_customers.png                 # Map: customers affected
-├── tx_heatwave_outage_map_duration.png                  # Map: mean duration
-├── tx_major_outage_logit_P90_severity.png               # Logit plot: P90 threshold
-├── tx_major_outage_logit_P95_severity.png               # Logit plot: P95 threshold
-└── tx_major_outage_logit_Fixed_500_customers.png        # Logit plot: fixed 500
+All outputs are saved under the outputs/ directory and organized as follows:
+
+📊 Tables
+tx_heatwave_events_2014_2021.csv — All detected heatwave events
+tx_heatwave_events_2014_2021.xlsx
+tx_heatwave_outage_events_2014_2021.csv — Heatwave events with associated outages
+tx_heatwave_outage_events_2014_2021.xlsx
+tx_heatwave_outage_county_summary_2014_2021.csv — County-level aggregated metrics
+tx_heatwave_outage_county_summary_2014_2021.xlsx
+tx_major_outage_logit_threshold_summary.csv — Logistic regression threshold comparison
+📈 Figures
+Distribution Plots
+tx_heatwave_outage_event_distributions.jpg — 3-panel histogram of event characteristics
+Spatial Maps
+tx_heatwave_outage_map_n_events.png — Heatwave event frequency by county
+tx_heatwave_outage_map_customers.png — Total customers affected
+tx_heatwave_outage_map_duration.png — Mean outage duration
+Statistical Modeling (Logistic Regression)
+tx_major_outage_logit_P90_severity.png — Model using 90th percentile threshold
+tx_major_outage_logit_P95_severity.png — Model using 95th percentile threshold
+tx_major_outage_logit_Fixed_500_customers.png — Model using fixed outage threshold
 
 ## 📉 Statistical Modeling
 
