@@ -132,6 +132,7 @@ tx-heatwave-outage-analysis/
 │       ├── tx_major_outage_logit_P95_severity.png
 │       └── tx_major_outage_logit_Fixed_500_customers.png
 
+---
 
 ## Requirements
 
